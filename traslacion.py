@@ -3,14 +3,14 @@ import numpy as np
 
 #-------------PROCESO DE DETECCIÓN DE OBJETO--------------------
 # Se carga la imagen original y la lee en escala de grises
-ruta_imagen = 'cerca.jpg'
+ruta_imagen = 'lejos.jpg'
 imagen = cv2.imread(ruta_imagen, cv2.IMREAD_GRAYSCALE)
 
 # Se aplica un filtro de suavizado para reducir el ruido
 imagen_suavizada = cv2.GaussianBlur(imagen, (5, 5), 0)
 
 # Se binariza la imagen para obtener una imagen binaria
-_, imagen_binaria = cv2.threshold(imagen_suavizada, 63, 255, cv2.THRESH_BINARY)
+_, imagen_binaria = cv2.threshold(imagen_suavizada, 120, 255, cv2.THRESH_BINARY)
 
 # Se detectan los bordes del objeto
 bordes = cv2.Canny(imagen_binaria, threshold1=100, threshold2=200)
