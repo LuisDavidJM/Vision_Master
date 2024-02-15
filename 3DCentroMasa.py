@@ -2,31 +2,36 @@ import numpy as np
 import os
 import binvox_rw
 
-def calcular_centro_de_masa(binvox_path):
-    with open(binvox_path, 'rb') as f:
+# Función para calcular el centro de masa de un modelo 3D voxelizado
+def calcular_centro_de_masa(ruta_binvox):
+    # Se abre el archivo .binvox para lectura en modo binario
+    with open(ruta_binvox, 'rb') as f:
+        # Se usa la función de binvox para leer el archivo como una matriz 3D
         modelo = binvox_rw.read_as_3d_array(f)
-    voxels_activos = np.argwhere(modelo.data)
-    centro_de_masa = np.round(voxels_activos.mean(axis=0), 6)
+    # Se buscan las coordenadas de todos los voxels
+    voxeles = np.argwhere(modelo.data)
+    # Se calcula el promedio de las coordenadas de cada voxel para obtener el centro de masa
+    centro_de_masa = np.round(voxeles.mean(axis=0), 6)
     return centro_de_masa
 
-# Asumiendo que tienes una carpeta llamada 'modelos_binvox' con tus archivos .binvox
-directorio_modelos = 'Objetos_3D/Archivos_BINVOX'
-nombres_archivos = [f for f in os.listdir(directorio_modelos) if f.endswith('.binvox')]
+# Se recorre la lista todos los archivos '.binvox'
+ruta_archivos = 'Objetos_3D/Archivos_BINVOX'
+nombres_archivos = [f for f in os.listdir(ruta_archivos) if f.endswith('.binvox')]
 
-# Lista para almacenar los resultados
+# Se crea una lista para almacenar los centros de masa
 resultados = []
 
-# Procesar cada archivo .binvox
+# Ciclo que se encarga de reccorer todos los archivos y calcular el centro de masa con la fucnión
 for nombre_archivo in nombres_archivos:
-    path_completo = os.path.join(directorio_modelos, nombre_archivo)
-    centro_de_masa = calcular_centro_de_masa(path_completo)
+    ruta = os.path.join(ruta_archivos, nombre_archivo)
+    centro_de_masa = calcular_centro_de_masa(ruta)
+    # Se agrega el nombre del archivo y su centro de masa a la lista
     resultados.append([nombre_archivo, centro_de_masa])
 
-# Imprimir los resultados como una tabla
-print(f"{'Nombre del Archivo':<20} {'Centro de Masa':>20}")
+# Se imprimen todos los centros de masa
+print(f"{'Nombre del Archivo':<25} {'Centro de Masa':>20}")
 for resultado in resultados:
     nombre_archivo, centro_de_masa = resultado
-    # Convertir el centro de masa a una cadena con cada valor redondeado a 6 decimales
-    centro_de_masa_str = ", ".join(f"{x:.4f}" for x in centro_de_masa)
-    print(f"{nombre_archivo:<20} {centro_de_masa_str:>30}")
-
+    # Se convierte el centro de masa a una cadena redondeando a 6 decimales
+    centro_de_masa_r = ", ".join(f"{x:.6f}" for x in centro_de_masa)
+    print(f"{nombre_archivo:<25} {centro_de_masa_r:>30}")
