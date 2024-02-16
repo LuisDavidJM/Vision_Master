@@ -1,0 +1,8 @@
+Debido a que los objetos 3D voxelizados y los archivos binarios son muy pesados, se encuentran en un repositorio de OneDrive
+por lo que para que funcionen correctamente los codigos 3DCentroMasa.py y 3DSuperficie.py es encesario seguir estos pasos:
+1- Acceder al repositorio que esta atravez de este link:
+	https://eduuaa-my.sharepoint.com/:f:/g/personal/al221273_edu_uaa_mx/EgX9ABOqnoFBrYkQO-3IN3YB4vRu9WvhXwrs5WYZXA3yXA
+2- En la parte superior izquierda se encuentra un boton de descargar, descargar los archivos.
+3- Se va adescargar una carpeta llamada Objetos_3D que contiene los archivos.
+4- Mover la carpeta Objetos_3D dentro de la carpeta Secion3 que se subio en el aula virtual
+5- Ahora si ejecutar los codigos 3DCentroMasa.py y 3DSuperficie.py, y funcionaran correctamente.

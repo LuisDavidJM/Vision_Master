@@ -21,7 +21,7 @@ def trasladar_imagen(imagen_a_trasladar, dx, dy):
     # Se aplica la traslación a las posiciones de los píxeles '1', verificando limites de imagen
     translated_y_indices = np.clip(y_indices + dy, 0, imagen_a_trasladar.shape[0] - 1)
     translated_x_indices = np.clip(x_indices + dx, 0, imagen_a_trasladar.shape[1] - 1)
-    # Se establece las posiciones de píxeles trasladadas a '1'
+    # Se establecen las posiciones de píxeles trasladadas a '1'
     imagen_trasladada[translated_y_indices, translated_x_indices] = 1
     return imagen_trasladada
 
@@ -57,12 +57,12 @@ def escalar_y_obtener_momentos_hu_img(ruta_archivo, factor_escala):
     momentos = cv2.moments(imagen_escalada.astype(np.float32))
     hu_momentos = cv2.HuMoments(momentos).flatten()
 
-    # Se mostran las imagenes
+    # Se muestran las imagenes
     mostrar_imagenes_con_matplotlib(
         [imagen_binaria, imagen_escalada],
         ['Imagen Binaria', 'Imagen Binaria Escalada']
     )
-    # Se devolver los invariantes de Hu
+    # Se devuelven los invariantes de Hu
     return hu_momentos[:7]
 
 
@@ -102,8 +102,8 @@ if __name__ == "__main__":
 with open(ruta_archivo_txt, 'r') as file:
     imagen_binaria = np.array([[int(char) for char in line.strip()] for line in file.readlines()], dtype=np.uint8)
 
-# Se traslada la imagene en las coordenadas especificadas
-dx, dy = 300, 300
+# Se traslada la imagen en las coordenadas especificadas
+dx, dy = 200, 200
 imagen_binaria_trasladada = trasladar_imagen(imagen_binaria, dx, dy)
 
 # Se calculan los momentos de Hu para ambas imágenes
@@ -132,7 +132,7 @@ print(f"Momento central imagen trasladada: ({cx_despues}, {cy_despues})")
 
 angulos = [15, 45, 90, 180]
 
-# Se mostra la imagen original y trasladada
+# Se muestra la imagen original y trasladada
 mostrar_imagenes_con_matplotlib(
     [imagen_binaria, imagen_binaria_trasladada],
     ['Imagen Binaria', 'Imagen Binaria Trasladada']
