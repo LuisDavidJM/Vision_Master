@@ -15,7 +15,7 @@ def calcular_centro_de_masa(ruta_binvox):
     return centro_de_masa
 
 # Se recorre la lista todos los archivos '.binvox'
-ruta_archivos = 'Objetos_3D/Archivos_BINVOX'
+ruta_archivos = '../Objetos_3D/Archivos_BINVOX'
 nombres_archivos = [f for f in os.listdir(ruta_archivos) if f.endswith('.binvox')]
 
 # Se crea una lista para almacenar los centros de masa

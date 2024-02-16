@@ -48,11 +48,11 @@ def guardar_como_binario(nombre_archivo, datos, carpeta_destino):
             f.write(datos.to_bytes(4, byteorder='little', signed=True))
 
 # Se recorre la lista todos los archivos '.binvox'
-ruta_archivos = 'Objetos_3D/Archivos_BINVOX'
+ruta_archivos = '../Objetos_3D/Archivos_BINVOX'
 nombres_archivos = [f for f in os.listdir(ruta_archivos) if f.endswith('.binvox')]
 
 # Ruta donde se van a guardar los archivos binarios
-carpeta_destino = 'Objetos_3D/BIN_Superficie'
+carpeta_destino = '../Objetos_3D/BIN_Superficie'
 
 # Ciclo que se encarga de recorrer todos los archivos e imprimir el area de la superficie
 for nombre_archivo in nombres_archivos:
